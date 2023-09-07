@@ -14,43 +14,9 @@
 <body>
 
 
-    <!-- <a-scene>
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-        <a-plane positiodn="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-        <a-sky color="#ECECEC"></a-sky>
-      </a-scene> -->
-    <!-- <g fill="nodne" font-size="10" font-family="sans-serif" text-anchor="middle">
-        <path class="domain" stroke="currentColor" d="M0.5,6V0.5H880.5V6"></path>
-        <g class="tick" opacity="1" transform="translate(0.5,0)">
-            <line stroke="currentColor" y2="6"></line>
-            <text fill="currentColor" y="9" dy="0.71em">0.0</text>
-        </g>
-        <g class="tick" opacity="1" transform="translate(176.5,0)">
-            <line stroke="currentColor" y2="6"></line>
-            <text fill="currentColor" y="9" dy="0.71em">0.2</text>
-        </g>
-        <g class="tick" opacity="1" transform="translate(352.5,0)">
-            <line stroke="currentColor" y2="6"></line>
-            <text fill="currentColor" y="9" dy="0.71em">0.4</text>
-        </g>
-        <g class="tick" opacity="1" transform="translate(528.5,0)">
-            <line stroke="currentColor" y2="6"></line>
-            <text fill="currentColor" y="9" dy="0.71em">0.6</text>
-        </g>
-        <g class="tick" opacity="1" transform="translate(704.5,0)">
-            <line stroke="currentColor" y2="6"></line>
-            <text fill="currentColor" y="9" dy="0.71em">0.8</text>
-        </g>
-        <g class="tick" opacity="1" transform="translate(880.5,0)">
-            <line stroke="currentColor" y2="6"></line>
-            <text fill="currentColor" y="9" dy="0.71em">1.0</text>
-        </g>
-    </g> -->
-    <div id="input1"></div>
+
+    
     <div id="container"></div>
-    <div id="gui-slider"></div>
 
     <script type="module" async>
         let data = [];
@@ -58,8 +24,10 @@
 
         let count = 0;
 
+
+        //data sourced from https://www.kaggle.com/datasets/aliasgherman/tsp-jan2022-gdp-per-quarter?resource=download
         async function f1() {
-            const x = await d3.csv("/datafiles/student_marks.csv", function (d) { return d })
+            const x = await d3.csv("/datafiles/GDP_Quarterly.csv", function (d) { return d })
             return x;
         }
 
@@ -130,15 +98,6 @@
 
 
 
-        const input = d3.create("input")
-            .attr("id", "inputrange")
-            .attr("type", "range")
-            .attr("min", "0")
-            .attr("max", "100")
-            .attr("step", "0.1")
-            .attr("value", "90")
-
-        input1.append(input.node());
         // // Add the x-axis.
 
         // svg1.append("g")
@@ -161,11 +120,11 @@
 
 
 
-        svg1.append("a-box").attr("class", "aplane").attr("position", "0 -3 -10").attr("rotation", `${-inputrange.value} 0 0`).attr("depth", "0.5").attr("width", "40").attr("height", "20").attr("color", "#7BC8A4")
+        svg1.append("a-box").attr("class", "aplane").attr("position", "0 -10 -10").attr("rotation", `90 0 0`).attr("depth", "0.5").attr("width", "40").attr("height", "20").attr("color", "#7BC8A4")
         //change the position (the -20) based on the number of rows you are going to get
         svg1.append("a-box").attr("class", "aplane").attr("position", "0 0 -20").attr("rotation", `0 0 0`).attr("width", "40").attr("depth", "0.5").attr("height", "20").attr("color", "#888888")
         //svg1.append("a-plane").attr("id", "aplane").attr("position", "-20 0 -20").attr("rotation", `0 -90 0`).attr("width", "40").attr("depth", "1").attr("height", "20").attr("color", "#7BC8A4").attr("visible", "true")
-        svg1.append("a-box").attr("class", "abox").attr("position", "-20 0 -20").attr("rotation", `0 -90 0`).attr("width", "40").attr("depth", "0.5").attr("height", "20").attr("color", "#7BC8A4").attr("visible", "true")
+        svg1.append("a-box").attr("class", "aplane").attr("position", "-20 0 -10").attr("rotation", `0 -90 0`).attr("width", "20").attr("depth", "0.5").attr("height", "20").attr("color", "#7BC8A4").attr("visible", "true")
 
 
         // svg1.append("a-entity")
@@ -175,35 +134,90 @@
         //     .attr("line__4", `start: -20 ${(Math.pow(80, 1.4) / 100) -3} -20; end: 20 ${(Math.pow(80, 1.4) / 100) -3} -20; color: red`)
         //     .attr("line__5", `start: -20 ${(Math.pow(90, 1.4) / 100) -3} -20; end: 20 ${(Math.pow(90, 1.4) / 100) -3} -20; color: red`)
 
-        //figuring out the height of the lines
+        //figuring out the height of the lines, DONE
         svg1.append("a-entity")
-            .attr("line", `start: -20 ${(Math.pow(50, 1.4) / 100) - 3} -3; end: 20 ${(Math.pow(50, 1.4) / 100) - 3} -3; color: red`)
-            .attr("line__2", `start: -20 ${(Math.pow(60, 1.4) / 100) - 3} -3; end: 20 ${(Math.pow(60, 1.4) / 100) - 3} -3; color: red`)
-            .attr("line__3", `start: -20 ${(Math.pow(70, 1.4) / 100) - 3} -3; end: 20 ${(Math.pow(70, 1.4) / 100) - 3} -3; color: red`)
-            .attr("line__4", `start: -20 ${(Math.pow(80, 1.4) / 100) - 3} -3; end: 20 ${(Math.pow(80, 1.4) / 100) - 3} -3; color: red`)
-            .attr("line__5", `start: -20 ${(Math.pow(90, 1.4) / 100) - 3} -3; end: 20 ${(Math.pow(90, 1.4) / 100) - 3} -3; color: red`)
+            .attr("line", `start: -20 ${10} -19.7; end: 20 ${10} -19.7; color: red`)
+            .attr("line__1", `start: -20 ${5} -19.7; end: 20 ${5} -19.7; color: red`)
+            .attr("line__2", `start: -20 ${0} -19.7; end: 20 ${0} -19.7; color: red`)
+            .attr("line__3", `start: -20 ${-5} -19.7; end: 20 ${-5} -19.7; color: red`)
+            .attr("line__4", `start: -19.7 ${10} 0; end: -19.7 ${10} -19.7; color: red`)
+            .attr("line__5", `start: -19.7 ${5} 0; end: -19.7 ${5} -19.7; color: red`)
+            .attr("line__6", `start: -19.7 ${0} 0; end: -19.7 ${0} -19.7; color: red`)
+            .attr("line__7", `start: -19.7 ${-5} 0; end: -19.7 ${-5} -19.7; color: red`)
+            .attr("line__8", `start: -20 ${7.5} -19.7; end: 20 ${7.5} -19.7; color: red`)
+            .attr("line__9", `start: -20 ${2.5} -19.7; end: 20 ${2.5} -19.7; color: red`)
+            .attr("line__10", `start: -20 ${-2.5} -19.7; end: 20 ${-2.5} -19.7; color: red`)
+            .attr("line__11", `start: -20 ${-7.5} -19.7; end: 20 ${-7.5} -19.7; color: red`)
+            .attr("line__12", `start: -19.7 ${7.5} 0; end: -19.7 ${7.5} -19.7; color: red`)
+            .attr("line__13", `start: -19.7 ${2.5} 0; end: -19.7 ${2.5} -19.7; color: red`)
+            .attr("line__14", `start: -19.7 ${-2.5} 0; end: -19.7 ${-2.5} -19.7; color: red`)
+            .attr("line__15", `start: -19.7 ${-7.5} 0; end: -19.7 ${-7.5} -19.7; color: red`)
+
+
+        svg1.append("a-entity")
+            .attr("line", `start: -20 ${-9.7} -3; end: 20 ${-9.7} -3; color: red`)
+            .attr("line__1", `start: -20 ${-9.7} -7; end: 20 ${-9.7} -7; color: red`)
+            .attr("line__2", `start: -20 ${-9.7} -11; end: 20 ${-9.7} -11; color: red`)
+
+
+        svg1.append("a-entity")
+            .attr("line", `start: -15 ${-9.7} 0; end: -15 ${-9.7} -20; color: red`)
+            .attr("line__1", `start: -6 ${-9.7} 0; end: -6 ${-9.7} -20; color: red`)
+            .attr("line__2", `start: 3 ${-9.7} 0; end: 3 ${-9.7} -20; color: red`)
+            .attr("line__3", `start: 12 ${-9.7} 0; end: 12 ${-9.7} -20; color: red`)
+
+
+        // .attr("line__2", `start: -20 ${(Math.pow(60, 1.4) / 100) - 10} -19.7; end: 20 ${(Math.pow(60, 1.4) / 100) - 10} -19.7; color: red`)
+        // .attr("line__3", `start: -20 ${(Math.pow(70, 1.4) / 100) - 10} -19.7; end: 20 ${(Math.pow(70, 1.4) / 100) - 10} -19.7; color: red`)
+        // .attr("line__4", `start: -20 ${(Math.pow(80, 1.4) / 100) - 10} -19.7; end: 20 ${(Math.pow(80, 1.4) / 100) - 10} -19.7; color: red`)
 
 
 
         container.append(svg1.node());
 
 
-        document.getElementById("input1").addEventListener("input", (e) => {
-            document.getElementById("abox").setAttribute("rotation", `0 ${inputrange.value} 0`)
-            document.getElementById("aplane").setAttribute("rotation", `${-inputrange.value} 0 0`)
-        })
+     
 
-        function getColour(value, array) {
-            let rgb = [255, 255, 0];
-            let step = Math.floor(255 / array.length);
-            let diff = value - 50;
-            console.log(value)
-            if (diff > 0) {
-                return [255 - (diff * step), 255, 0]
-            } else {
-                return [255, 255 - Math.abs(diff * step), 0]
+        function getColour(country) {
+            if (country == "Sweden") {
+                return "yellow";
             }
+            else if (country == "Finland") {
+                return "blue";
+            }
+            else if (country == "Norway") {
+                return "red";
+            }
+            else {
+                return "black"
+            }
+        }
 
+        function extract(array) {
+            let tempArray = [];
+            for (let i = 0, count = 1; i < array.length; i++) {
+                if (array[i].Country == "Finland") {
+                    if (array[i].YearQuarter == `2014Q${count}`) {
+                        tempArray.push(["Finland", array[i].YearQuarter, array[i].GDP.replace(",", "")]);
+                        count++;
+                    }
+                }
+                else if (array[i].Country == "Sweden") {
+                    if (array[i].YearQuarter == `2014Q${count}`) {
+                        tempArray.push(["Sweden", array[i].YearQuarter, array[i].GDP.replace(",", "")]);
+                        count++;
+                    }
+                }
+                else if (array[i].Country == "Norway") {
+                    if (array[i].YearQuarter == `2014Q${count}`) {
+                        tempArray.push(["Norway", array[i].YearQuarter, array[i].GDP.replace(",", "")]);
+                        count++;
+                    }
+                }
+                if (count == 5)
+                    count = 1;
+            }
+            return tempArray;
         }
 
 
@@ -216,47 +230,217 @@
             let z = -3;
 
             for (let i = 0; i < array.length; i++) {
-                console.log(array[i].Test_1)
-                let colour = getColour(array[i].Test_1, array);
+                array[i].GDP = array[i].GDP.replace(",", "");
+                console.log(typeof (array[i].GDP))
+            }
+
+
+
+            //extract the data
+            let threeDArray = extract(array);
+            console.log(threeDArray)
+
+            for (let i = 0; i < threeDArray.length; i++) {
+                console.log(threeDArray[i][3])
+                let colour = getColour(threeDArray[i][0]);
                 console.log(colour)
-                array = array.sort();
+                //array = array.sort();
                 //TODO: add text into on top of the box, done.
 
                 //with a height of 100, the position needs to be at 47
                 //with a height of 10, it needs to be -2
                 svg1.append("a-box")
                     .attr("id", `abox${i}`)
-                    .attr("position", `${x / 10} -3 ${z}`)
-                    .attr("height", `${array[i].Test_1 / 10}`)
-                    .attr("width", 0.5)
-                    .attr("depth", 0.5)
-                    .attr("rotation", `0 45 0`)
-                    .attr("color", `rgb(${colour[0]}, ${colour[1]}, 0)`);
+                    .attr("position", `${x / 10} ${((threeDArray[i][2] / 10000) / 2) - 10} ${z}`)//the position has to be done this way because AFrame puts the position of the boxes at the half point on the height???
+                    .attr("height", `${threeDArray[i][2] / 10000}`)
+                    .attr("width", 2.5)
+                    .attr("depth", 2.5)
+                    .attr("rotation", `0 0 0`)
+                    .attr("color", `${colour}`);
 
 
 
 
                 svg1.append("a-text")
                     .attr(`id`, `s${i}`)
-                    .attr("value", `${array[i].Test_1}%`)
+                    .attr("value", `$200000`)
                     .attr("color", "black")
-                    .attr("position", `${x / 10} ${(Math.pow(array[i].Test_1, 1.4) / 100) - 3} ${z + 0.2}`)
+                    .attr("position", `-24.5 ${10} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
                     .attr("text")
-                x += 20;
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$150000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${5} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$100000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${0} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$50000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${-5} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$175000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${7.5} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$125000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${2.5} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$75000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${-2.5} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `$25000`)
+                    .attr("color", "black")
+                    .attr("position", `-24.5 ${-7.5} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+
+
+                //countries labels
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Finland`)
+                    .attr("color", "black")
+                    .attr("position", `20.5 ${-9.7} -3`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Norway`)
+                    .attr("color", "black")
+                    .attr("position", `20.5 ${-9.7} -7`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Sweden`)
+                    .attr("color", "black")
+                    .attr("position", `20.5 ${-9.7} -11`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+
+                //quarters labels
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Q1`)
+                    .attr("color", "black")
+                    .attr("position", `-16 ${-9.7} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Q2`)
+                    .attr("color", "black")
+                    .attr("position", `-7 ${-9.7} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Q3`)
+                    .attr("color", "black")
+                    .attr("position", `2 ${-9.7} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Q4`)
+                    .attr("color", "black")
+                    .attr("position", `11 ${-9.7} 0.5`)
+                    .attr("width", 25)
+                    .attr("height", 10)
+                    .attr("text")
+
+
+                svg1.append("a-text")
+                    .attr(`id`, `s${i}`)
+                    .attr("value", `Quarterly GDP Sweden, Finland, Norway for 2014`)
+                    .attr("color", "black")
+                    .attr("position", `-8 ${-10.7} 3`)
+                    .attr("width", 20)
+                    .attr("height", 8)
+                    .attr("text")
+
+
+
+
+                x += 90;
                 colourCounter++;
-                if (x == 150) {
+                if ((i + 1) % 4 == 0) {
                     colourCounter = 0;
                     x = -150;
                     z += -4;
                 }
             }
 
-
-            for (let i = 0; i < array.length; i++) {
-                document.getElementById(`abox${i}`).addEventListener("click", (e) => {
-                    console.log(array[i].Test_1);
-                })
-            }
+            //does not work
+            // for (let i = 0; i < array.length; i++) {
+            //     document.getElementById(`abox${i}`).addEventListener("click", (e) => {
+            //         console.log(array[i].GDP);
+            //     })
+            // }
 
         }
 
