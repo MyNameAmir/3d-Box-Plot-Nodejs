@@ -1,12 +1,12 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { f1 } from "./d3DataRetrieving.js";
-import {drawPlot} from "./drawingBars.js";
+import {drawPlot} from "./bars.js";
 import {planes} from "./planes.js";
 import {lines} from "./lines.js";
 
 
 
-let y = f1();
+let y = extractCSVData("/datafiles/GDP_Quarterly.csv");
 let count = 0;
 let data = [];
 const width = 640;

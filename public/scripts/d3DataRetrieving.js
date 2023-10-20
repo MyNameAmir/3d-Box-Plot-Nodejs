@@ -2,8 +2,8 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 //data sourced from https://www.kaggle.com/datasets/aliasgherman/tsp-jan2022-gdp-per-quarter?resource=download
-export async function f1() {
-    const x = await d3.csv("/datafiles/GDP_Quarterly.csv", function (d) { return d })
+export async function extractCSVData(file) {
+    const x = await d3.csv(file, function (d) { return d })
     return x;
 }
 
