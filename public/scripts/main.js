@@ -1,5 +1,5 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-import { f1 } from "./d3DataRetrieving.js";
+import { extractCSVData } from "./d3DataRetrieving.js";
 import {drawPlot} from "./bars.js";
 import {planes} from "./planes.js";
 import {lines} from "./lines.js";
