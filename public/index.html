@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
     <script src="scripts/d3DataRetrieving.js" type="module" async></script>
     <script src="scripts/planes.js" type="module" async></script>
@@ -16,15 +16,14 @@
 </head>
 
 <body>
-
-    <div id="container"></div>
-
+    <a-scene>
+        <div id="container"></div>
+    </a-scene>
 
     <style>
         html.a-fullscreen .a-canvas {
             width: 100% !important;
             height: 100% !important;
-            top: 50px !important;
             left: 0 !important;
             right: 0 !important;
             bottom: 0 !important;
